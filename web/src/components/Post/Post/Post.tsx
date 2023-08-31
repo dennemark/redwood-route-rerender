@@ -1,10 +1,10 @@
-import { Link, routes, navigate } from '@redwoodjs/router'
+import type { DeletePostMutationVariables, FindPostById } from 'types/graphql'
+
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { timeTag } from 'src/lib/formatters'
-
-import type { DeletePostMutationVariables, FindPostById } from 'types/graphql'
 
 const DELETE_POST_MUTATION = gql`
   mutation DeletePostMutation($id: Int!) {
@@ -38,6 +38,16 @@ const Post = ({ post }: Props) => {
   return (
     <>
       <div className="rw-segment">
+        <h2>
+          <Link to={routes.home()} title={'Show home'}>
+            Home (Unmounting)
+          </Link>
+        </h2>
+        <h2>
+          <Link to={routes.posts()} title={'Show posts'}>
+            Posts (No unmounting)
+          </Link>
+        </h2>
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
             Post {post.id} Detail
